@@ -1,5 +1,4 @@
 
-
 //IIFE module
 const gameboard = (() => {
     let board = [
@@ -30,7 +29,7 @@ function refreshGame () {
 
 let turnTables = false;
 
-while (!gameOver) {
+/*while (!gameOver) {
     let sign = (turnTables) ? "o" : "x"; 
     let row = prompt("Please choose the row");
     let position = prompt("Please now choose the position");
@@ -45,3 +44,4 @@ while (!gameOver) {
     }
     console.log("**********");
 }
+*/
