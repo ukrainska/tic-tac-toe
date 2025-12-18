@@ -1,3 +1,7 @@
+const buttons = document.querySelectorAll(".board button");
+
+let gameOver = false;
+let turnTables = false;
 
 //IIFE module
 const gameboard = (() => {
@@ -10,38 +14,59 @@ const gameboard = (() => {
 })();
 
 //factory function
-function createPlayer (name, number) {
-    const playerName = name;
-    const sign = (number === "1") ? "x" : "o";
-    return {playerName, sign};
+function getSign () {
+    const sign = (turnTables) ? "o" : "x"; 
+    return {sign};
 }
 
-let gameOver = false;
+function getRow(row) {
+    switch(row) {
+        case "first-line":
+            return 0;
+        case "second-line":
+            return 1;
+        case "third-line":
+            return 2;
+        default:
+            break;
+    }
+}
 
-const signX = "x";
-const signO = "o";
+function getCol(col){
+    switch(col) {
+        case "left":
+            return 0;
+        case "center":
+            return 1;
+        case "right":
+            return 2;
+        default:
+            break;
+    }
+}
 
-function refreshGame () {
-    gameboard.forEach ((row) => {
-    console.log(row);
-    });
-}    
-
-let turnTables = false;
-
-/*while (!gameOver) {
-    let sign = (turnTables) ? "o" : "x"; 
-    let row = prompt("Please choose the row");
-    let position = prompt("Please now choose the position");
-    gameboard[row-1][position-1] = sign;
-    refreshGame();
+function addToBoard(line, position) {
+    const row = getRow(line);
+    const col = getCol(position);
+    const sign = getSign().sign;
+    gameboard[row][col] = sign;
     turnTables = (turnTables) ? false : true;
+    return sign;
+}
 
+function checkTheGame() {
     const hasEmptyCell = gameboard.some(row => row.includes("_"));
     if (!hasEmptyCell ) {
         gameOver = true;
         console.log("over");
     }
-    console.log("**********");
 }
-*/
+
+buttons.forEach(button => {
+    button.addEventListener("click", function () {
+        const row = this.parentElement.classList[0];
+        const col = this.classList[0];
+        this.textContent = addToBoard(row, col);
+    });
+});
+
