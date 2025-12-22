@@ -28,13 +28,31 @@
 
 .banner {
     grid-row: 1;
+    position: relative;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+}
+
+.gameName {
+    flex: 1;
+    position: absolute; 
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
     padding-block: 1rem;
     color: var(--text-font);
     font-family: "Rubik Moonrocks", Arial, Helvetica, sans-serif;
     font-weight: 600;
     font-size: 2rem;
+}
+
+#resetG {
+    margin-left: auto;
+    border-color: var(--hover-color);
+    background-color: var(--hover-color);
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .central-part {
